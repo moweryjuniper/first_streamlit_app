@@ -5,7 +5,10 @@ streamlit.title('My Parents New Healthy Diner')
 #streamlit.body('Breakfast Menu') --streamlit has no attribute body
 # 🥣 🥗 🐔 🥑🍞
 streamlit.header('Breakfast Menu') 
+
 streamlit.text('🥣 Blueberry Oatmeal') 
 streamlit.text('🥗 Kale and Spinach Smoothie') 
 streamlit.text('🐔 Breakfast Sandwich') 
 streamlit.text('🥑🍞 Avocado Toast')
+
+streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
