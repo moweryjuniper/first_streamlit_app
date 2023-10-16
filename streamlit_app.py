@@ -31,3 +31,8 @@ streamlit.header("Fruityvice Fruit Advice!")
 import requests
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
 streamlit.text(fruityvice_response.json())
+
+# write your own comment -what does the next line do? looks like creates a variable and "normalizes" whatever the data returned from the fruityvice json
+fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+# write your own comment - what does this do? Puts that normalized variable in a dataframe
+streamlit.dataframe(fruityvice_normalized)
