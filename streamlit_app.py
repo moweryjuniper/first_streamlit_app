@@ -51,15 +51,22 @@ def get_fruit_load_list():
 
 #adding a button to load the fruit
 if streamlit.button('Get fruit load list'):
-  my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
   my_data_rows = get_fruit_load_list() 
   streamlit.dataframe(my_data_rows)
 
-streamlit.stop()
 
 # new section to add fruit to the fruit load list
-add_my_fruit = streamlit.text_input('What fruit would you like to add?','jackfruit')
+def insert_snowflake_row(new_fruit):
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute("insert into PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST values ('from streamlit')")
+    return "Thanks for adding " + new_fruit
+
+add_my_fruit = streamlit.text_input('What fruit would you like to add?')
+if streamlit.button('Add fruit to list'):
+  my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+  back_from_function = insert_row_snowflake(add_my_fruit)
+  streamlit.text(back_from_function)
+
+streamlit.stop()
 streamlit.write('Thanks for adding: ', add_my_fruit)
 
-# this code will cause "Control of Flow" problems but we're still doing it
-my_cur.execute("insert into PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST values ('from streamlit')")
