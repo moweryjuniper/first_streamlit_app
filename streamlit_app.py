@@ -43,4 +43,7 @@ streamlit.dataframe(my_data_rows)
 
 # new section to add fruit to the fruit load list
 add_my_fruit = streamlit.text_input('What fruit would you like to add?','jackfruit')
-streamlit.write('The user entered: ', add_my_fruit)
+streamlit.write('Thanks for adding: ', add_my_fruit)
+
+# this code will cause "Control of Flow" problems but we're still doing it
+my_cur.execute("insert into PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST values ('from streamlit')")
